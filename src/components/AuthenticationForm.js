@@ -4,13 +4,29 @@ export default function AuthenticationForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const handleUsernameChange = ({ target }) => {
+    const { name, value } = target;
+    setUsername(value);
+  };
+  const handlePasswordChange = ({ target }) => {
+    const { name, value } = target;
+    setPassword(value);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const res = await fetch("http://localhost:3232/");
+    console.log({ username, password });
+
+    const res = await fetch("http://localhost:3232/", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
     const data = await res.json();
     console.log(data);
   };
-  console.log("here");
 
   //   fetch("http://localhost:3232")
   //     .then((res) => res.json())
@@ -19,8 +35,18 @@ export default function AuthenticationForm() {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <input placeholder="username" />
-        <input placeholder="password" />
+        <input
+          placeholder="username"
+          name="username"
+          value={username}
+          onChange={handleUsernameChange}
+        />
+        <input
+          placeholder="password"
+          name="password"
+          value={password}
+          onChange={handlePasswordChange}
+        />
         <button type="submit">Submit</button>
       </form>
     </div>
