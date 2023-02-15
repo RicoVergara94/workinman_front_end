@@ -1,13 +1,19 @@
 import "./App.css";
 
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import HomePage from "./components/pages/HomePage";
+import RegistrationPage from "./components/pages/RegistrationPage";
 
 function App() {
   return (
-    <div className="App">
-      <HomePage />
-    </div>
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/register" element={<RegistrationPage />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
