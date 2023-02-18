@@ -10,13 +10,25 @@ import {
 
 export default function HomePage() {
   return (
-    <div>
-      HomePage
-      <div>
-        <AuthenticationForm />
-        <Link to="/register">Register</Link>
-        Dolore nostrud exercitation cillum aliqua.
-      </div>
-    </div>
+    <>
+      <header>
+        <h1 className="logo">HomePage</h1>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/register">Register</Link>
+            </li>
+            <li>
+              <Link to="/delete">Delete Account</Link>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <div>
+          <AuthenticationForm />
+        </div>
+      </main>
+    </>
   );
 }
