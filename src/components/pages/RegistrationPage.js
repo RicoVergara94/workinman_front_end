@@ -14,6 +14,10 @@ export default function RegistrationPage() {
   };
 
   const handleSubmit = async (event) => {
+    console.log("in the handleSubmit method");
+    const usernameAvailability = document.getElementById(
+      "username-availability"
+    );
     event.preventDefault();
 
     const res = await fetch("http://localhost:3232/register", {
@@ -23,6 +27,14 @@ export default function RegistrationPage() {
       },
       body: JSON.stringify({ username, password }),
     });
+    if (res.status === 409) {
+      const data = await res.text();
+      console.log(data);
+      // alert(data);
+      // const data = await res.json();
+      usernameAvailability.textContent = "Username is already taken";
+      usernameAvailability.style.color = "red";
+    }
   };
 
   return (
@@ -36,6 +48,10 @@ export default function RegistrationPage() {
           value={username}
           onChange={handleUsernameChange}
         />
+        <div>
+          <span id="username-availability"></span>
+        </div>
+
         <div>Please enter your password</div>
         <input
           placeholder="password"
