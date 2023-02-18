@@ -38,31 +38,35 @@ export default function RegistrationPage() {
   };
 
   return (
-    <div>
-      <h1>Registration Page</h1>
-      <form onSubmit={handleSubmit}>
-        <div>Please enter your username</div>
-        <input
-          placeholder="username"
-          name="username"
-          value={username}
-          onChange={handleUsernameChange}
-        />
-        <div>
-          <span id="username-availability"></span>
-        </div>
+    <>
+      <header>
+        <h1>Registration Page</h1>
+      </header>
+      <main>
+        <form onSubmit={handleSubmit}>
+          <div>Please enter your username</div>
+          <input
+            placeholder="username"
+            name="username"
+            value={username}
+            onChange={handleUsernameChange}
+          />
+          <div>
+            <span id="username-availability"></span>
+          </div>
 
-        <div>Please enter your password</div>
-        <input
-          placeholder="password"
-          name="password"
-          value={password}
-          onChange={handlePasswordChange}
-        />
-        <div>
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-    </div>
+          <div>Please enter your password</div>
+          <input
+            placeholder="password"
+            name="password"
+            value={password}
+            onChange={handlePasswordChange}
+          />
+          <div>
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </main>
+    </>
   );
 }
