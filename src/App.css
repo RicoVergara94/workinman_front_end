@@ -101,3 +101,88 @@ header {
 .nav-links a:hover {
   border-bottom: 2px solid #fff;
 }
+
+.form-container {
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+.form-container h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-container input[type="text"],
+.form-container input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.form-container button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.form-container button[type="submit"]:hover {
+  background-color: #0062cc;
+}
+
+/* .form-container {
+  position: relative;
+}
+
+.form-container input:invalid {
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translateX(-10px);
+  }
+
+  20%,
+  80% {
+    transform: translateX(10px);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translateX(-10px);
+  }
+
+  40%,
+  60% {
+    transform: translateX(10px);
+  }
+}
+
+.form-container input:invalid + .error-message {
+  display: block;
+}
+
+.error-message {
+  display: none;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  color: red;
+} */
