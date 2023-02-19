@@ -27,23 +27,25 @@ export default function AuthenticationForm() {
     const data = await res.json();
     console.log(data);
   };
-
-  //   fetch("http://localhost:3232")
-  //     .then((res) => res.json())
-  //     .then((data) => console.log(data));
+  // TODO: Need to alert user is the username or password is wrong
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
+        <div>
+          <span>Please enter your username and password</span>
+        </div>
         <input
           placeholder="username"
           name="username"
+          type="text"
           value={username}
           onChange={handleUsernameChange}
         />
         <input
           placeholder="password"
           name="password"
+          type="password"
           value={password}
           onChange={handlePasswordChange}
         />
