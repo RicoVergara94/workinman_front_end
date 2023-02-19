@@ -19,12 +19,22 @@ export default function DeletePassword(props) {
       },
       body: JSON.stringify({ username, password }),
     });
+
+    if (res.status === 200) {
+      props.handlePasswordStatusCode(200);
+    } else if (res.status === 404) {
+      props.handlePasswordStatusCode(404);
+      const error = document.getElementById("password-error");
+      error.textContent = "password was wrong please try again";
+      error.style.color = "red";
+    }
   };
   return (
     <>
       <div className="form-container">
         <form onSubmit={handleSubmit}>
           <h2>Please enter your password</h2>
+          <p className="error-message" id="username-error"></p>
           <input type="text" onChange={onPasswordChange} />
           <button type="submit">Submit</button>
         </form>
