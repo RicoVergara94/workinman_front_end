@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function RegistrationPage() {
   const [username, setUsername] = useState("");
@@ -40,7 +41,20 @@ export default function RegistrationPage() {
   return (
     <>
       <header>
-        <h1>Registration Page</h1>
+        <h1 className="logo">Registration Page</h1>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/register">Register</Link>
+            </li>
+            <li>
+              <Link to="/delete">Delete Account</Link>
+            </li>
+          </ul>
+        </nav>
       </header>
       <main>
         <form onSubmit={handleSubmit}>
@@ -48,6 +62,7 @@ export default function RegistrationPage() {
           <input
             placeholder="username"
             name="username"
+            type="text"
             value={username}
             onChange={handleUsernameChange}
           />
@@ -59,6 +74,7 @@ export default function RegistrationPage() {
           <input
             placeholder="password"
             name="password"
+            type="password"
             value={password}
             onChange={handlePasswordChange}
           />
