@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import DeleteUsername from "../DeleteUsername";
 import DeletePassword from "../DeletePassword";
+import AccountWasDeleted from "../AccountWasDeleted";
 
 export default function DeleteAccountPage() {
   const [usernameStatusCode, setUsernameStatusCode] = useState(null);
+  const [passwordStatusCode, setPasswordStatusCode] = useState(null);
   const [usernameParent, setUsernameParent] = useState("");
 
   const handleSetUsernameParent = (username) => {
@@ -14,6 +16,9 @@ export default function DeleteAccountPage() {
   const handleUsernameStatusCode = (code) => {
     setUsernameStatusCode(code);
   };
+  const handlePasswordStatusCode = (code) => {
+    setPasswordStatusCode(code);
+  };
   const [component, setComponent] = useState(
     <DeleteUsername
       handleSetUsernameParent={handleSetUsernameParent}
@@ -22,10 +27,23 @@ export default function DeleteAccountPage() {
   );
   useEffect(() => {
     if (usernameStatusCode === 200) {
+      // may need to add condition to check component === DeleteUsername
       console.log("this is username: " + usernameParent);
-      setComponent(<DeletePassword usernameParent={usernameParent} />);
+      setComponent(
+        <DeletePassword
+          handlePasswordStatusCode={handlePasswordStatusCode}
+          usernameParent={usernameParent}
+        />
+      );
     }
   }, [usernameStatusCode]);
+
+  useEffect(() => {
+    if (passwordStatusCode === 200) {
+      console.log("inside the useeffect for password");
+      setComponent(<AccountWasDeleted />);
+    }
+  }, [passwordStatusCode]);
   return (
     <>
       <header>
