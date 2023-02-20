@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AuthenticationForm from "../AuthenticationForm";
+import UserProfile from "../UserProfile";
 import {
   BrowserRouter as Router,
   Route,
@@ -9,6 +10,25 @@ import {
 } from "react-router-dom";
 
 export default function HomePage() {
+  const [username, setUsername] = useState("");
+  const [accountStatusCode, setAccountStatusCode] = useState(null);
+  const handleAuthenticateAccount = (code) => {
+    if (code === 200) {
+      setAccountStatusCode(200);
+    }
+  };
+
+  const [component, setComponent] = useState(
+    <AuthenticationForm handleAuthenticateAccount={handleAuthenticateAccount} />
+  );
+
+  useEffect(() => {
+    if (accountStatusCode === 200) {
+      setComponent(<UserProfile />);
+      setUsername();
+    }
+  }, [accountStatusCode]);
+
   return (
     <>
       <header>
@@ -28,9 +48,7 @@ export default function HomePage() {
         </nav>
       </header>
       <main>
-        <div>
-          <AuthenticationForm />
-        </div>
+        <div>{component}</div>
       </main>
     </>
   );
