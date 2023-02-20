@@ -18,14 +18,21 @@ export default function HomePage() {
     }
   };
 
+  const handleSettingUsername = (authUsername) => {
+    setUsername(authUsername);
+  };
+
   const [component, setComponent] = useState(
-    <AuthenticationForm handleAuthenticateAccount={handleAuthenticateAccount} />
+    <AuthenticationForm
+      handleAuthenticateAccount={handleAuthenticateAccount}
+      handleSettingUsername={handleSettingUsername}
+    />
   );
 
   useEffect(() => {
     if (accountStatusCode === 200) {
-      setComponent(<UserProfile />);
-      setUsername();
+      setComponent(<UserProfile username={username} />);
+      // setUsername(); this needs to be a prop in auth component
     }
   }, [accountStatusCode]);
 

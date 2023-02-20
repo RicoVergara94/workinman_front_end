@@ -28,6 +28,7 @@ export default function AuthenticationForm(props) {
     // console.log(data);
     if (res.status === 200) {
       props.handleAuthenticateAccount(200);
+      props.handleSettingUsername(username);
     } else {
       const error = document.getElementById("account-error");
       error.innerText = "Username or password are incorrect, please try again.";

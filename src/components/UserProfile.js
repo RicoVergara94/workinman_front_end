@@ -1,5 +1,5 @@
 import React from "react";
-
-export default function UserProfile() {
-  return <div>UserProfile</div>;
+// Need props with the username and other things
+export default function UserProfile(props) {
+  return <div>Welcome {props.username}!</div>;
 }
