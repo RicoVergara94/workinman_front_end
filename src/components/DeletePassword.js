@@ -35,7 +35,7 @@ export default function DeletePassword(props) {
         <form onSubmit={handleSubmit}>
           <h2>Please enter your password</h2>
           <p className="error-message" id="username-error"></p>
-          <input type="text" onChange={onPasswordChange} />
+          <input type="password" onChange={onPasswordChange} />
           <button type="submit">Submit</button>
         </form>
       </div>
