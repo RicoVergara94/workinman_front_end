@@ -39,6 +39,19 @@ export default function RegistrationPage() {
       );
       event.preventDefault();
 
+      if (username.length < 10 || username.length > 30) {
+        const error = document.getElementById("registration-username-error");
+        error.innerText = "please choose a username with 10 to 29 characters";
+        error.style.color = "red";
+        return;
+      }
+      if (password.length < 5 || password.length > 12) {
+        const error = document.getElementById("registration-password-error");
+        error.innerText = "please choose a password with 5 to 12 characters";
+        error.style.color = "red";
+        return;
+      }
+
       const res = await fetch("http://localhost:3232/register", {
         method: "post",
         headers: {
@@ -72,7 +85,7 @@ export default function RegistrationPage() {
             onChange={handleUsernameChange}
           />
           <div>
-            <span id="username-availability"></span>
+            <p className="error-message" id="registration-username-error"></p>
           </div>
 
           <div>Please choose a password</div>
@@ -83,6 +96,9 @@ export default function RegistrationPage() {
             value={password}
             onChange={handlePasswordChange}
           />
+          <div>
+            <p className="error-message" id="registration-password-error"></p>
+          </div>
           <div>
             <button type="submit">Submit</button>
           </div>
