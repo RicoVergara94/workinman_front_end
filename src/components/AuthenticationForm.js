@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function AuthenticationForm() {
+export default function AuthenticationForm(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -24,8 +24,15 @@ export default function AuthenticationForm() {
       },
       body: JSON.stringify({ username, password }),
     });
-    const data = await res.json();
-    console.log(data);
+    // const data = await res.json();
+    // console.log(data);
+    if (res.status === 200) {
+      props.handleAuthenticateAccount(200);
+    } else {
+      const error = document.getElementById("account-error");
+      error.innerText = "Username or password are incorrect, please try again.";
+      error.style.color = "red";
+    }
   };
   // TODO: Need to alert user is the username or password is wrong
 
@@ -33,7 +40,7 @@ export default function AuthenticationForm() {
     <div>
       <form onSubmit={handleSubmit}>
         <div>
-          <span>Please enter your username and password</span>
+          <p>Please enter your username</p>
         </div>
         <input
           placeholder="username"
@@ -42,6 +49,7 @@ export default function AuthenticationForm() {
           value={username}
           onChange={handleUsernameChange}
         />
+        <p>Please enter your password</p>
         <input
           placeholder="password"
           name="password"
@@ -50,6 +58,7 @@ export default function AuthenticationForm() {
           onChange={handlePasswordChange}
         />
         <button type="submit">Submit</button>
+        <p className="error-message" id="account-error"></p>
       </form>
     </div>
   );
