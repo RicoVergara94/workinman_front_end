@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-export default function ImageFormComponent() {
+export default function ImageFormComponent(props) {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [username, setUsername] = useState(props.username);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     // const boundary = await uuidv4();
     const formData = new FormData();
     formData.append("image", selectedFile);
+    formData.append("username", username);
 
     // formData.append("image", selectedFile, {
     //   contentType: "image/*",
@@ -76,11 +78,4 @@ export default function ImageFormComponent() {
       <p className="error-message" id="image-error"></p>
     </>
   );
-}
-
-{
-  /* <form onSubmit={submit}>
-<input onChange={fileSelected} type="file" accept="image/*"></input>
-<button type="submit">Submit</button>
-</form> */
 }

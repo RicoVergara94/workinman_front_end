@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CsvFormComponent from "./CsvFormComponent";
 import ImageFormComponent from "./ImageFormComponent";
 // Need props with the username and other things
 export default function UserProfile(props) {
@@ -11,7 +12,10 @@ export default function UserProfile(props) {
       <header>Welcome {props.username}!</header>
       <main>
         <div>
-          <ImageFormComponent />
+          <ImageFormComponent username={props.username} />
+        </div>
+        <div>
+          <CsvFormComponent username={props.username} />
         </div>
         {/* {component} */}
       </main>
