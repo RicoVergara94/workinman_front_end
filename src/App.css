@@ -362,3 +362,56 @@ img {
   font-weight: bold; /* Bold text */
   margin: 0; /* Remove margin so there's no spacing between the text and the container */
 }
+
+.chat-box-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.message-window {
+  flex-grow: 1;
+  overflow-y: scroll;
+  padding: 10px;
+}
+
+.message-window div {
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  max-width: 70%;
+  align-self: flex-start;
+}
+
+.message-window div.user-message {
+  background-color: #0084ff;
+  color: white;
+  align-self: flex-end;
+}
+
+form {
+  display: flex;
+  margin-top: 10px;
+}
+
+input[type="text"] {
+  flex-grow: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+button[type="submit"] {
+  background-color: #0084ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+}

@@ -3,6 +3,7 @@ import CsvFormComponent from "./CsvFormComponent";
 import ImageFormComponent from "./ImageFormComponent";
 import UploadComponent from "./UploadComponent";
 import GameComponent from "./GameComponent";
+import ChatBoxComponent from "./ChatBoxComponent";
 // Need props with the username and other things
 export default function UserProfile(props) {
   const [component, setComponent] = useState(
@@ -32,7 +33,7 @@ export default function UserProfile(props) {
           </ul>
         </nav>
       </header>
-
+      <ChatBoxComponent username={props.username} />
       <main>{component}</main>
     </>
   );
