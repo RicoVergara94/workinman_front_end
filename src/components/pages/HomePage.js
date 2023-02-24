@@ -7,14 +7,18 @@ import {
   Routes,
   Link,
   Switch,
+  useNavigate,
 } from "react-router-dom";
 
 export default function HomePage() {
   const [username, setUsername] = useState("");
   const [accountStatusCode, setAccountStatusCode] = useState(null);
+  const navigate = useNavigate();
+
   const handleAuthenticateAccount = (code) => {
     if (code === 200) {
       setAccountStatusCode(200);
+      localStorage.setItem("isLoggedIn", true);
     }
   };
 
@@ -22,24 +26,55 @@ export default function HomePage() {
     setUsername(authUsername);
   };
 
-  const [component, setComponent] = useState(
+  useEffect(() => {
+    const userProfileState = localStorage.getItem("userProfileState");
+    if (userProfileState) {
+      setAccountStatusCode(200);
+      setUsername(JSON.parse(userProfileState).username);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (accountStatusCode === 200) {
+      localStorage.setItem(
+        "userProfileState",
+        JSON.stringify({ username: username })
+      );
+    }
+  }, [accountStatusCode, username]);
+
+  const userProfileComponent = <UserProfile username={username} />;
+
+  const authComponent = (
     <AuthenticationForm
       handleAuthenticateAccount={handleAuthenticateAccount}
       handleSettingUsername={handleSettingUsername}
     />
   );
+  const [component, setComponent] = useState(
+    accountStatusCode === 200 ? userProfileComponent : authComponent
+  );
+  // const isLoggedIn = localStorage.getItem("isLoggedIn");
 
   useEffect(() => {
     if (accountStatusCode === 200) {
-      setComponent(<UserProfile username={username} />);
-      // setUsername(); this needs to be a prop in auth component
+      setComponent(userProfileComponent);
+    } else {
+      setComponent(authComponent);
     }
   }, [accountStatusCode]);
+
+  const handleLogout = () => {
+    setUsername("");
+    setAccountStatusCode(null);
+    navigate.push("/");
+  };
 
   return (
     <>
       <header>
         <h1 className="logo">HomePage</h1>
+        {accountStatusCode && <button onClick={handleLogout}>Log Out</button>}
         <nav>
           <ul>
             <li>

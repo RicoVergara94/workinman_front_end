@@ -251,3 +251,114 @@ button[type="submit"]:focus {
   outline: none;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
 }
+
+nav {
+  background-color: #333;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+nav li {
+  margin: 0;
+  padding: 0;
+}
+
+nav li a {
+  display: block;
+  padding: 1em;
+  color: #fff;
+  text-decoration: none;
+}
+
+nav li a:hover {
+  background-color: #555;
+}
+
+nav li.active a {
+  background-color: #4caf50;
+}
+#image-question-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+img {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 10px;
+}
+
+.questions-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  text-align: center;
+}
+
+#question-container {
+  margin: 20px 0;
+}
+
+#answer-one-container,
+#answer-two-container,
+#answer-three-container,
+#answer-four-container {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #ffa600;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#answer-one-container:hover,
+#answer-two-container:hover,
+#answer-three-container:hover,
+#answer-four-container:hover {
+  background-color: #ff7b00;
+}
+#question-container {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  padding: 20px 0;
+  border-bottom: 2px solid #ccc;
+}
+
+/* #question-blocks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  border: 2px solid black;
+  padding: 20px;
+} */
+
+.QuestionComponent {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+#points-container {
+  background-color: #f44336; /* Red background color */
+  border-radius: 10px; /* Rounded corners */
+  padding: 10px; /* Add some padding */
+  display: inline-block; /* Display as inline-block so it doesn't take up the full width of the screen */
+  margin-bottom: 20px; /* Add some spacing between this and the next element */
+}
+
+#points-paragraph {
+  color: white; /* White text color */
+  font-size: 24px; /* Increase font size */
+  font-weight: bold; /* Bold text */
+  margin: 0; /* Remove margin so there's no spacing between the text and the container */
+}
