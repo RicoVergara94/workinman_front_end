@@ -9,6 +9,7 @@ export default function ChatBoxComponent(props) {
 
     ws.onmessage = (event) => {
       const message = JSON.parse(event.data);
+      console.log(message);
       setMessages((messages) => [...messages, message]);
     };
 
@@ -20,8 +21,13 @@ export default function ChatBoxComponent(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const ws = new WebSocket("ws://localhost:3232/ws");
+    const messageWithUsername = {
+      username: props.username,
+      message: inputValue,
+    };
     ws.onopen = () => {
-      ws.send(JSON.stringify({ message: inputValue }));
+      //   ws.send(JSON.stringify({ message: inputValue }));
+      ws.send(JSON.stringify(messageWithUsername));
     };
     setInputValue("");
   };
@@ -34,7 +40,7 @@ export default function ChatBoxComponent(props) {
     <div className="chat-box-container">
       <div className="message-window">
         {messages.map((message, index) => (
-          <div key={index}>{message.message}</div>
+          <div key={index}>{message.username + ": " + message.message}</div>
         ))}
       </div>
       <form onSubmit={handleSubmit}>
