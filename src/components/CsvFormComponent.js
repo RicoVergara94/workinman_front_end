@@ -6,60 +6,44 @@ export default function CsvFormComponent(props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(selectedCsvFile);
-    // const boundary = await uuidv4();
     const formData = new FormData();
     formData.append("csvFile", selectedCsvFile);
     formData.append("username", username);
 
-    // formData.append("image", selectedFile, {
-    //   contentType: "image/*",
-    //   boundary: boundary,
-    // });
-    // console.log("this is boundary : " + boundary);
-
     const res = await fetch("http://localhost:3232/upload-csv", {
       method: "post",
       body: formData,
-      headers: {
-        // "Content-Type": "multipart/form-data",
-      },
+      headers: {},
     });
-    // if (res.status === 200) {
-    //   const text = await res.text();
-    //   const success = document.getElementById("file-success");
-    //   success.innerText = text;
+    if (res.status === 200) {
+      const text = await res.text();
+      const success = document.getElementById("file-success-container");
+      success.innerText = text;
 
-    //   success.style.padding = "16px";
-    //   success.style.backgroundColor = "#dff0d8";
-    //   success.style.border = "1px solid #d6e9c6";
-    //   success.style.color = "#3c763d";
-    //   success.style.borderRadius = "4px";
-    //   success.style.marginBottom = "16px";
-    // } else if (res.status === 500) {
-    //   const error = document.getElementById("file-error");
-    //   error.innerText = await res.text();
-    //   error.style.color = "red";
-    // }
+      success.style.padding = "16px";
+      success.style.backgroundColor = "#dff0d8";
+      success.style.border = "1px solid #d6e9c6";
+      success.style.color = "#3c763d";
+      success.style.borderRadius = "4px";
+      success.style.marginBottom = "16px";
+      const error = document.getElementById("file-error");
+      error.innerText = "";
+    } else if (res.status === 400) {
+      const error = document.getElementById("file-error");
+      error.innerText = await res.text();
+      error.style.color = "red";
+      const success = document.getElementById("file-success-container");
+      success.innerHTML = "";
+      success.innerText = "";
+      success.style = "";
+    }
   };
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    console.log("inside file change component");
-
     setSelectedCsvFile(file);
   };
 
-  //   const submit = async event => {
-  //     event.preventDefault()
-  //     const result = await postImage({image: file, description})
-  //     setImages([result.image, ...images])
-  //   }
-
-  //   const fileSelected = event => {
-  //     const file = event.target.files[0]
-  // 		setFile(file)
-  // 	}
   return (
     <>
       <form encType="multipart/form-data" onSubmit={handleSubmit}>
@@ -72,8 +56,46 @@ export default function CsvFormComponent(props) {
         />
         <button type="submit">Upload</button>
       </form>
-      <p id="file-success"></p>
-      <p className="error-message" id="file-error"></p>
+      <div id="file-success-container">
+        <p id="file-success"></p>
+      </div>
+      <div id="file-error-container">
+        <p className="error-message" id="file-error"></p>
+      </div>
+
+      <div>
+        <p>
+          <strong>How to structure your csv file</strong>
+        </p>
+        <ul>
+          <li>
+            The Column Headers preferably should be labeled as such and in this
+            order:
+            <ul>
+              <li>Question ID</li>
+              <li>Question Text</li>
+              <li>Correct Answer</li>
+              <li>Incorrect Answer 1</li>
+              <li>Incorrect Answer 2</li>
+              <li>Incorrect Answer 3</li>
+              <li>Difficulty Level</li>
+              <li>Image File Name</li>
+            </ul>
+          </li>
+          <p className="break"></p>
+          <li>
+            Be sure the 'Image File Name' is the same on the csv file as the
+            name of the image uploaded inluding the format it is in e.g.
+            "George_Washington.jpeg"
+          </li>
+          <p id="csv-file-example-break">
+            <strong>
+              Example of a correctly structured and formatted csv file:
+            </strong>
+          </p>
+          <img src="/csv_example.png"></img>
+        </ul>
+      </div>
     </>
   );
 }

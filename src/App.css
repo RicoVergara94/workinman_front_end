@@ -377,6 +377,7 @@ img {
   flex-grow: 1;
   overflow-y: scroll;
   padding: 10px;
+  overflow-wrap: break-word;
 }
 
 .message-window div {
@@ -405,6 +406,7 @@ input[type="text"] {
   border: none;
   border-radius: 5px;
   margin-right: 10px;
+  border: 2px solid #ccc;
 }
 
 button[type="submit"] {
@@ -414,4 +416,128 @@ button[type="submit"] {
   border-radius: 5px;
   padding: 10px 15px;
   cursor: pointer;
+}
+#chat-input {
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-left: 20px;
+  font-size: 16px;
+  outline: none;
+}
+
+#chat-input:focus {
+  border-color: #0080ff;
+}
+
+.chat-box-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.chat-box-container.minimized {
+  height: 40px;
+  max-height: 40px;
+}
+
+.chat-box-container.minimized .message-window {
+  display: none;
+}
+
+.chat-box-container.minimized #chat-input {
+  display: none;
+}
+
+.chat-box-container.minimized button {
+  display: none;
+}
+
+.chat-box-container:hover {
+  height: 400px;
+  max-height: 400px;
+}
+
+.chat-box-container:hover .message-window {
+  display: block;
+}
+
+.chat-box-container:hover #chat-input {
+  display: block;
+}
+
+.chat-box-container:hover button {
+  display: block;
+}
+
+.chat-box-container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+  height: 50px;
+  border: 2px solid black;
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 9999;
+}
+#minimize-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#csv-file-example-break {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* Image Upload Component */
+#image-success-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#image-success {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#image-error-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#image-error {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#file-success-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#file-success {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#file-error-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#file-error {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
