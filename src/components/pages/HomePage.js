@@ -43,7 +43,15 @@ export default function HomePage() {
     }
   }, [accountStatusCode, username]);
 
-  const userProfileComponent = <UserProfile username={username} />;
+  const handleLogout = () => {
+    setUsername("");
+    setAccountStatusCode(null);
+    navigate.push("/");
+  };
+
+  const userProfileComponent = (
+    <UserProfile username={username} handleLogout={handleLogout} />
+  );
 
   const authComponent = (
     <AuthenticationForm
@@ -63,12 +71,6 @@ export default function HomePage() {
       setComponent(authComponent);
     }
   }, [accountStatusCode]);
-
-  const handleLogout = () => {
-    setUsername("");
-    setAccountStatusCode(null);
-    navigate.push("/");
-  };
 
   return (
     <>

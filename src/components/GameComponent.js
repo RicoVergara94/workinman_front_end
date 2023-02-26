@@ -16,7 +16,10 @@ export default function GameComponent(props) {
       signal: controller.signal,
     })
       .then((res) => res.json())
-      .then((data) => setRecords(data));
+      .then((data) => {
+        data.sort((a, b) => a.difficulty_level - b.difficulty_level);
+        setRecords(data);
+      });
 
     return () => controller.abort();
   }, []);

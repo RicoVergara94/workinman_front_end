@@ -65,7 +65,6 @@ export default function QuestionComponent(props) {
                 handleCorrectOptionClicked();
               } else {
                 handleWrongOptionClicked();
-                console.log(disabledQuestionContainer);
               }
             }}
           >

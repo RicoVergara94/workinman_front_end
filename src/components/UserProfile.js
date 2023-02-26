@@ -4,7 +4,7 @@ import ImageFormComponent from "./ImageFormComponent";
 import UploadComponent from "./UploadComponent";
 import GameComponent from "./GameComponent";
 import ChatBoxComponent from "./ChatBoxComponent";
-// Need props with the username and other things
+
 export default function UserProfile(props) {
   const [component, setComponent] = useState(
     <GameComponent username={props.username} />

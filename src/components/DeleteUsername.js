@@ -9,7 +9,6 @@ export default function DeleteUsername(props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("this is username: " + username);
     const res = await fetch("http://localhost:3232/delete/username", {
       method: "post",
       headers: {
@@ -19,18 +18,16 @@ export default function DeleteUsername(props) {
     });
 
     if (res.status === 404) {
-      console.log("username does not exist");
       props.handleUsernameStatusCode(res.status);
       const error = document.getElementById("username-error");
       error.textContent = "Username is either wrong or does not exist";
       error.style.color = "red";
     } else if (res.status === 200) {
-      console.log("Unto the delete password component");
       props.handleSetUsernameParent(username);
       props.handleUsernameStatusCode(res.status);
     }
   };
-  // TODO: once the username is submitted and verified change the form-container to deletepassword component
+
   return (
     <>
       <div className="form-container">

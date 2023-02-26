@@ -15,7 +15,6 @@ export default function AuthenticationForm(props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log({ username, password });
 
     const res = await fetch("http://localhost:3232/", {
       method: "post",
@@ -24,8 +23,7 @@ export default function AuthenticationForm(props) {
       },
       body: JSON.stringify({ username, password }),
     });
-    // const data = await res.json();
-    // console.log(data);
+
     if (res.status === 200) {
       props.handleAuthenticateAccount(200);
       props.handleSettingUsername(username);
@@ -35,7 +33,6 @@ export default function AuthenticationForm(props) {
       error.style.color = "red";
     }
   };
-  // TODO: Need to alert user is the username or password is wrong
 
   return (
     <div>

@@ -5,7 +5,6 @@ export default function RegistrationPage() {
   const [accountStatusCode, setAccountStatusCode] = useState(null);
 
   const handleSettingAccountStatusCode = (code) => {
-    console.log("we are inside the handleSettingAccountStatusCode");
     setAccountStatusCode(code);
   };
 
@@ -33,7 +32,6 @@ export default function RegistrationPage() {
     };
 
     const handleSubmit = async (event) => {
-      console.log("in the handleSubmit method");
       const usernameAvailability = document.getElementById(
         "username-availability"
       );
@@ -61,14 +59,9 @@ export default function RegistrationPage() {
       });
       if (res.status === 200) {
         props.handleSettingAccountStatusCode(200);
-        console.log("success");
+        // console.log("success");
       } else if (res.status === 409) {
-        // const data = await res.text();
-        // console.log(data);
-        // alert(data);
-        // const data = await res.json();
         const data = await res.text();
-        console.log(data);
         usernameAvailability.textContent = "Username is already taken";
         usernameAvailability.style.color = "red";
       }

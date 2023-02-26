@@ -10,7 +10,6 @@ export default function DeletePassword(props) {
   };
 
   const handleSubmit = async (event) => {
-    console.log(username);
     event.preventDefault();
     const res = await fetch("http://localhost:3232/delete/password", {
       method: "post",

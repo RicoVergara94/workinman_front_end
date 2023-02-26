@@ -27,8 +27,6 @@ export default function DeleteAccountPage() {
   );
   useEffect(() => {
     if (usernameStatusCode === 200) {
-      // may need to add condition to check component === DeleteUsername
-      console.log("this is username: " + usernameParent);
       setComponent(
         <DeletePassword
           handlePasswordStatusCode={handlePasswordStatusCode}
@@ -40,7 +38,7 @@ export default function DeleteAccountPage() {
 
   useEffect(() => {
     if (passwordStatusCode === 200) {
-      console.log("inside the useeffect for password");
+      localStorage.removeItem("userProfileState");
       setComponent(<AccountWasDeleted />);
     }
   }, [passwordStatusCode]);
